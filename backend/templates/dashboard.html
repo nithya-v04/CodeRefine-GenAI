@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>CodeRefine AI Dashboard</title>
+    <style>
+        body {
+            font-family: Arial;
+            background-color: #111;
+            color: white;
+            padding: 40px;
+        }
+        .card {
+            background: #1e1e1e;
+            padding: 20px;
+            border-radius: 10px;
+        }
+        .score {
+            font-size: 28px;
+            color: #4CAF50;
+        }
+        pre {
+            white-space: pre-wrap;
+        }
+    </style>
+</head>
+<body>
+    <h1>🤖 CodeRefine AI Dashboard</h1>
+
+    <div class="card">
+        <div class="score">
+            Code Health Score: {{ score if score else "No Score Yet" }}
+        </div>
+        <hr>
+        <pre>{{ review }}</pre>
+    </div>
+</body>
+</html>
