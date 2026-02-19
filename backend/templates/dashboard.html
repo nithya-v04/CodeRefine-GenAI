@@ -2,36 +2,99 @@
 <html>
 <head>
     <title>CodeRefine AI Dashboard</title>
+
     <style>
         body {
             font-family: Arial;
-            background-color: #111;
+            background: #0f172a;
             color: white;
-            padding: 40px;
+            text-align: center;
         }
+
         .card {
-            background: #1e1e1e;
+            background: #1e293b;
             padding: 20px;
+            margin: 20px auto;
+            width: 60%;
+            border-radius: 10px;
+            box-shadow: 0px 0px 10px #000;
+        }
+
+        .score {
+            font-size: 50px;
+            font-weight: bold;
+        }
+
+        .good { color: #22c55e; }
+        .warning { color: #facc15; }
+        .bad { color: #ef4444; }
+
+        .progress-bar {
+            width: 80%;
+            background: #334155;
+            margin: 20px auto;
+            height: 25px;
             border-radius: 10px;
         }
-        .score {
-            font-size: 28px;
-            color: #4CAF50;
+
+        .progress {
+            height: 25px;
+            border-radius: 10px;
+            background: #22c55e;
         }
+
         pre {
-            white-space: pre-wrap;
+            text-align: left;
+            padding: 10px;
+            background: #020617;
+            overflow-x: auto;
         }
     </style>
-</head>
-<body>
-    <h1>🤖 CodeRefine AI Dashboard</h1>
 
-    <div class="card">
-        <div class="score">
-            Code Health Score: {{ score if score else "No Score Yet" }}
+</head>
+
+<body>
+
+<h1>🚀 CodeRefine AI Dashboard</h1>
+
+<div class="card">
+
+    <h2>Code Health Score</h2>
+
+    {% if score %}
+        <div class="score
+        {% if score > 75 %}
+            good
+        {% elif score > 40 %}
+            warning
+        {% else %}
+            bad
+        {% endif %}
+        ">
+            {{score}} / 100
         </div>
-        <hr>
-        <pre>{{ review }}</pre>
-    </div>
+
+        <div class="progress-bar">
+            <div class="progress" style="width: {{score}}%;"></div>
+        </div>
+    {% else %}
+        <h3>No PR Reviewed Yet</h3>
+    {% endif %}
+
+</div>
+
+<div class="card">
+
+    <h2>Latest AI Review</h2>
+    <pre>{{review}}</pre>
+
+</div>
+
+<script>
+    setTimeout(function(){
+       location.reload();
+    }, 5000);
+</script>
+
 </body>
 </html>
